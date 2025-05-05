@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 app = FastAPI()
 img_height, img_width = 180, 180
 # Load model once
-model = load_model("resnet50_model_explicit.keras")
+model = load_model("deepFake-API/resnet50_model_explicit.keras")
 
 @app.get("/")
 async def read_root():
