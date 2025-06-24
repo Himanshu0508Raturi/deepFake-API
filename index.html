@@ -135,14 +135,6 @@
       transition: color 0.4s ease;
     }
 
-    #preview {
-      margin-top: 20px;
-      max-width: 100%;
-      border-radius: 10px;
-      display: none;
-      box-shadow: 0 0 12px rgba(0, 188, 212, 0.3);
-    }
-
     @media (max-width: 400px) {
       .container {
         width: 100%;
@@ -169,13 +161,11 @@
       <button type="submit" aria-live="polite">Upload & Detect</button>
     </form>
     <div id="result" aria-live="polite" role="status"></div>
-    <img id="preview" alt="Uploaded preview" />
   </div>
 
   <script>
     const form = document.getElementById('uploadForm');
     const resultDiv = document.getElementById('result');
-    const preview = document.getElementById('preview');
     const apiUrl = "https://raturishivaay-deepfakeapinew.hf.space/predict";
 
     form.addEventListener('submit', async (e) => {
@@ -198,14 +188,6 @@
       resultDiv.style.textShadow = '0 0 6px #aaa';
       button.disabled = true;
       button.textContent = 'Detecting...';
-
-      // Show image preview
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        preview.src = e.target.result;
-        preview.style.display = 'block';
-      };
-      reader.readAsDataURL(file);
 
       try {
         const response = await fetch(apiUrl, {
